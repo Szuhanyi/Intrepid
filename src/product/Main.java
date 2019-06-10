@@ -4,8 +4,8 @@ import view.MainWindow;
 
 public class Main {
 
-	public static void main(String[] args) {
-		
+    public static void main(String[] args) {
+
 //		// we shall make this man great again
 //		OutputService output = OutputService.getInstance();			
 //		Function.newSchaffer();			
@@ -21,8 +21,8 @@ public class Main {
 //		output.printByFitness(opt);
 //		plot.showMeTheGraph(opt);
 //		
-		MainWindow m = new MainWindow();
-		m.setVisible(true);
-		
-	}
+        MainWindow m = new MainWindow();
+        m.setVisible(true);
+
+    }
 }
