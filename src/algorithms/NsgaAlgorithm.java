@@ -1,6 +1,7 @@
 package algorithms;
 
 import exception.SomethingWentWrongException;
+import model.Front;
 import model.Individual;
 import model.Population;
 import services.Attributes;
@@ -9,17 +10,16 @@ import java.util.LinkedList;
 
 public class NsgaAlgorithm extends Algorithm {
 
-    private LinkedList<LinkedList<Individual>> fronts;
+    private LinkedList<Front> fronts;
 
     public NsgaAlgorithm() {
-
-        fronts = new LinkedList<LinkedList<Individual>>();
+        fronts = new LinkedList<Front>();
     }
+
 
     @Override
     public Population optimize(Population p, int cycleCount) {
-        // Do the evolutionary thing, procedure
-
+        // Do the evolutiona+ry thing, procedure
         Population parentGeneration = p;
         evaluate(parentGeneration);
         int size = p.size();
@@ -41,7 +41,6 @@ public class NsgaAlgorithm extends Algorithm {
 
 
     private void evaluate(Population p) {
-
         // this method should assign the fitness values to the individuals.
         // actually this method executes only three methods
         nonDominatedSort(p);
@@ -69,12 +68,13 @@ public class NsgaAlgorithm extends Algorithm {
 
         // iterate through the fronts (ranking variable)
 
-        for (LinkedList<Individual> front : fronts) {
+        for (Front front : fronts) {
             crowdingDistanceAssignment(front);
         }
+
     }
 
-    private void crowdingDistanceAssignment(LinkedList<Individual> p) {
+    private void crowdingDistanceAssignment(Front p) {
 
         if (p.size() == 0) {
             return;
@@ -91,7 +91,7 @@ public class NsgaAlgorithm extends Algorithm {
         }
     }
 
-    private void normalSort(LinkedList<Individual> p, int poz) {
+    private void normalSort(Front p, int poz) {
         // sort
 
         for (int i = 0; i < p.size() - 1; i++) {
@@ -110,7 +110,7 @@ public class NsgaAlgorithm extends Algorithm {
         //fronts = new LinkedList<LinkedList<Individual>>();
 
         fronts.clear();
-        LinkedList<Individual> currentFront = new LinkedList<Individual>();
+        Front currentFront = new Front();
         try {
             for (int i = 0; i < pop.size(); i++) {
                 Individual p = pop.get(i);
@@ -138,12 +138,12 @@ public class NsgaAlgorithm extends Algorithm {
         // build fronts, based on domination count
 
         fronts.add(currentFront);
-        LinkedList<Individual> nextFront = new LinkedList<>();
+        Front nextFront;
         int frontIndex = 0;
 
         while (currentFront.size() > 0) {
             //	currentFront = ranking.get(frontIndex);
-            nextFront = new LinkedList<>();
+            nextFront = new Front();
             for (Individual p : currentFront) {
                 // iterate through
                 for (int j = 0; j < p.getDominatedSetSize(); j++) {
@@ -183,7 +183,7 @@ public class NsgaAlgorithm extends Algorithm {
         int i = 0;
         //int frontIndex = 0;
         while (i < count && fronts.size() > 0) {
-            LinkedList<Individual> front = fronts.getFirst();
+            Front front = fronts.getFirst();
             for (Individual ind : front) {
                 if (i < count) {
                     result.add(ind);
@@ -197,7 +197,7 @@ public class NsgaAlgorithm extends Algorithm {
         return new Population(result);
     }
 
-    public LinkedList<LinkedList<Individual>> getRanking() {
+    public LinkedList<Front> getRanking() {
 
         return fronts;
     }
@@ -207,7 +207,7 @@ public class NsgaAlgorithm extends Algorithm {
 
         LinkedList<Individual> ranked = new LinkedList<>();
 
-        for (LinkedList<Individual> l : fronts) {
+        for (Front l : fronts) {
             for (Individual ind : l) {
                 ranked.add(ind);
             }
@@ -217,9 +217,9 @@ public class NsgaAlgorithm extends Algorithm {
     }
 
     // Returns the first front, if possible
-    public LinkedList<Individual> getFirstFront() {
+    public Front getFirstFront() {
 
-        LinkedList<Individual> result;
+        Front result;
         if (fronts == null || fronts.size() < 1) {
             result = null;
         } else {

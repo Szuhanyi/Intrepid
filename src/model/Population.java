@@ -31,9 +31,7 @@ public class Population implements Output {
     }
 
     public Population() {
-
         list = new LinkedList<Individual>();
-
     }
 
     /**
@@ -42,20 +40,18 @@ public class Population implements Output {
      * @param length
      */
     public Population(int length) {
-
         this();
         initializePopulation(length);
     }
 
     public void evaluate() {
-
         Function f = Function.getInstance();
         if (f != null) {
             for (Individual i : list) {
                 f.evaluate(i);
             }
         } else {
-            System.out.println("Evaluation function not instanciadted.");
+            System.out.println("Evaluation function not instantiated.");
         }
     }
 
@@ -166,7 +162,6 @@ public class Population implements Output {
     }
 
     public void SortByObjectiveValue(int index) {
-
         if (list.size() > 0 && list.get(0).getObjectiveValues().length >= index) {
             for (int i = 0; i < list.size() - 1; i++) {
                 for (int j = i + 1; j < list.size(); j++) {
