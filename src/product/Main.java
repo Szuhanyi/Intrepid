@@ -1,5 +1,6 @@
 package product;
 
+import logging.DemoLogger;
 import view.MainWindow;
 
 public class Main {
@@ -20,9 +21,11 @@ public class Main {
 //		//plot.showMeTheGraph(p);	
 //		output.printByFitness(opt);
 //		plot.showMeTheGraph(opt);
-//		
+
         MainWindow m = new MainWindow();
         m.setVisible(true);
 
+
+//         new DemoLogger();
     }
 }

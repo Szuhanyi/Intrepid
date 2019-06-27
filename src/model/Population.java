@@ -18,21 +18,24 @@ public class Population implements Output {
 
     private LinkedList<Individual> list;
 
-    public Population(List<Individual> init) {
-
-        this();
-        if (init != null) {
-            for (int i = 0; i < init.size(); i++) {
-                Individual ind = init.get(i);
-                Individual newInd = new Individual(ind);
-                list.add(newInd);
-            }
-        }
-    }
 
     public Population() {
         list = new LinkedList<Individual>();
     }
+
+
+    public Population(List<Individual> init) {
+        this();
+        if (init != null) {
+            init.stream().forEach(ind -> list.add(new Individual(ind)));
+//            for (int i = 0; i < init.size(); i++) {
+//                Individual ind = init.get(i);
+//                Individual newInd = new Individual(ind);
+//                list.add(newInd);
+//            }
+        }
+    }
+
 
     /**
      * Initialize with length number of elements
@@ -44,6 +47,7 @@ public class Population implements Output {
         initializePopulation(length);
     }
 
+
     public void evaluate() {
         Function f = Function.getInstance();
         if (f != null) {
@@ -54,6 +58,7 @@ public class Population implements Output {
             System.out.println("Evaluation function not instantiated.");
         }
     }
+
 
     /**
      * Concatenates the parameter with the instance, and returns a new one
@@ -120,9 +125,9 @@ public class Population implements Output {
 
     public void initializePopulation(int length) {
 
-        TestDataSeeder tds = TestDataSeeder.getInstance();
-        list = tds.getData(length);
-
+        //TestDataSeeder tds = TestDataSeeder.getInstance();
+        //list = tds.getData(length);
+        list = TestDataSeeder.getInstance().getData(length);
     }
 
     @Override
@@ -149,6 +154,7 @@ public class Population implements Output {
         }
     }
 
+    // this does not look that cool.. first do the logging
     public void sortByFitness() {
         for (int i = 0; i < list.size() - 1; i++) {
             for (int j = i + 1; j < list.size(); j++) {
