@@ -18,23 +18,18 @@ public class NsgaAlgorithm extends Algorithm {
 
 
     @Override
-    public Population optimize(Population p, int cycleCount) {
-        // Do the evolutiona+ry thing, procedure
-        Population parentGeneration = p;
+    public Population optimize(Population parentGeneration, int cycleCount) {
+        // Do the evolutionary thing, procedure
+      //  Population parentGeneration = p;
         evaluate(parentGeneration);
-        int size = p.size();
+        int size = parentGeneration.size();
         for (int i = 0; i < cycleCount; i++) {
             Population newGeneration = parentGeneration.spawnNewPopulation();
-            size = newGeneration.size();
             Population allGene = parentGeneration.append(newGeneration);
-            size = allGene.size();
             evaluate(allGene);
-            size = allGene.size();
             //Select the best
             parentGeneration = makeSelection(Attributes.getPopulationSize());
-            size = parentGeneration.size();
         }
-        int size2 = parentGeneration.size();
         // I am not sure about this value transfer
         return parentGeneration;
     }
@@ -52,7 +47,6 @@ public class NsgaAlgorithm extends Algorithm {
     }
 
     private void fitnessAssignment(Population p) {
-
         // Do I need you right now ? Tell me truly !
         for (int i = 0; i < p.size(); i++) {
             Individual ind = p.get(i);
@@ -105,12 +99,22 @@ public class NsgaAlgorithm extends Algorithm {
         }
     }
 
+    // this is bullshit
+
+    // take them notes down
+
+    // the happy hobb ?
+
     public void nonDominatedSort(Population pop) {
-
-        //fronts = new LinkedList<LinkedList<Individual>>();
-
+        // this is not good.. this is bad..
+        // it think this one stinks like a  big fcking dump
+        // would you like to eat dump for 200 souls ?
+        // hell yeah..
         fronts.clear();
         Front currentFront = new Front();
+
+        // 1.  Mark every individual, by there domination
+
         try {
             for (int i = 0; i < pop.size(); i++) {
                 Individual p = pop.get(i);
@@ -164,7 +168,6 @@ public class NsgaAlgorithm extends Algorithm {
     }
 
     private boolean dominates(Individual p, Individual q) {
-
         return p.lessThen(q);
     }
 
@@ -212,7 +215,6 @@ public class NsgaAlgorithm extends Algorithm {
                 ranked.add(ind);
             }
         }
-
         return ranked;
     }
 
@@ -236,5 +238,6 @@ public class NsgaAlgorithm extends Algorithm {
         }
         return result;
     }
+    // this is just a piece of shit.. don't worry love.. no one will notice this..
 
 }

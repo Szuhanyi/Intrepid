@@ -4,7 +4,7 @@ import model.Population;
 
 /**
  * Search algorithms
- *
+ * pretty useless in his own..
  * @author Gyorgy
  */
 
