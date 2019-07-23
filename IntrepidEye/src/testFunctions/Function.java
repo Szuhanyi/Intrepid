@@ -17,6 +17,10 @@ public abstract class Function {
     protected double[] paretoMax;
     protected double[] boundaryParetoSolutions;
 
+    /**
+     * Return singleton
+     * @return
+     */
     public static Function getInstance() {
 
         if (instance == null) {

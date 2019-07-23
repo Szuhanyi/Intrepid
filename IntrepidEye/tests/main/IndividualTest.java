@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import model.Individual;
 
-class IndividualTest {
 
+class IndividualTest {
+	
+	
 	@Test
 	void testIndividual() {	
 		// how do you test a constructor in a model class ?				
@@ -21,16 +23,29 @@ class IndividualTest {
 		ind = new Individual();
 		assertEquals(id+1,ind.getId());
 		
+		// how do you start making progress ?? 	
+		
 	}
 
+	
 	@Test
 	void testIndividualIndividual() {
 		// Or is this for the individual... ?? what not
+		// this is a test for the second constructor
+		// what are the requirements here ? 
+		// copy the values, and nothing else.. how do you do that ??? in a test format ?
+		
+		// I should create a TestDataCreator. initializer
+		
+		// ahh.. intrepid eye.. hell yeah
+		
+		
 	}
 
+	
 	@Test
 	void testLessThen() {
-		//  this method compares two values, but there objective values.. 
+		//  this method compares two values, but their  objective values.. 
 		// a < b , only if every value is less then that one.. 		
 		
 		// get two specific solution from the function's and 
@@ -61,22 +76,25 @@ class IndividualTest {
 		ind1.setObjectiveValues(x);
 		ind2.setObjectiveValues(y);
 		assertEquals(true, ind2.lessThen(ind1));
+		
 	}
 
+	
 	@Test
 	void testGetDominatedSetSize() {
 		// not going that well I see.. non.. IT
 		Individual ind = new Individual();
-		assertEquals(0,ind.getDominatedSetSize());
-		
+		assertEquals(0,ind.getDominatedSetSize());		
 		
 	}
 
+	
 	@Test
 	void testAddDominatedSolution() {
 		fail("Not yet implemented");
 	}
 
+	
 	@Test
 	void testRemoveDominatedSolution() {
 		fail("Not yet implemented");

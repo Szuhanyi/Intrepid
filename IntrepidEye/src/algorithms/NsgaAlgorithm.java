@@ -22,7 +22,6 @@ public class NsgaAlgorithm extends Algorithm {
         // Do the evolutionary thing, procedure
       //  Population parentGeneration = p;
         evaluate(parentGeneration);
-        int size = parentGeneration.size();
         for (int i = 0; i < cycleCount; i++) {
             Population newGeneration = parentGeneration.spawnNewPopulation();
             Population allGene = parentGeneration.append(newGeneration);
@@ -39,13 +38,12 @@ public class NsgaAlgorithm extends Algorithm {
         // this method should assign the fitness values to the individuals.
         // actually this method executes only three methods
         nonDominatedSort(p);
-
         assignCrowdingDistance();
-
         // I am not sure if this algorithm uses a fitness function
         fitnessAssignment(p);
     }
 
+    
     private void fitnessAssignment(Population p) {
         // Do I need you right now ? Tell me truly !
         for (int i = 0; i < p.size(); i++) {
