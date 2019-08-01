@@ -19,35 +19,24 @@ public class NsgaAlgorithm extends Algorithm {
 
     @Override
     public Population optimize(Population parentGeneration, int cycleCount) {
-        // Do the evolutionary thing, procedure
-      //  Population parentGeneration = p;
         evaluate(parentGeneration);
-        int size = parentGeneration.size();
         for (int i = 0; i < cycleCount; i++) {
             Population newGeneration = parentGeneration.spawnNewPopulation();
             Population allGene = parentGeneration.append(newGeneration);
             evaluate(allGene);
-            //Select the best
             parentGeneration = makeSelection(Attributes.getPopulationSize());
         }
-        // I am not sure about this value transfer
         return parentGeneration;
     }
 
 
     private void evaluate(Population p) {
-        // this method should assign the fitness values to the individuals.
-        // actually this method executes only three methods
         nonDominatedSort(p);
-
         assignCrowdingDistance();
-
-        // I am not sure if this algorithm uses a fitness function
         fitnessAssignment(p);
     }
 
     private void fitnessAssignment(Population p) {
-        // Do I need you right now ? Tell me truly !
         for (int i = 0; i < p.size(); i++) {
             Individual ind = p.get(i);
             double fitness = 0;
@@ -59,24 +48,18 @@ public class NsgaAlgorithm extends Algorithm {
     }
 
     private void assignCrowdingDistance() {
-
-        // iterate through the fronts (ranking variable)
-
         for (Front front : fronts) {
             crowdingDistanceAssignment(front);
         }
-
     }
 
     private void crowdingDistanceAssignment(Front p) {
-
         if (p.size() == 0) {
             return;
         }
         int length = p.get(0).getObjectiveValues().length;
         for (int j = 0; j < length; j++) {
             normalSort(p, j);
-            // threshold should be set to infinite
             p.get(0).setDistance(Integer.MAX_VALUE);
             p.get(p.size() - 1).setDistance(Integer.MAX_VALUE);
             for (int i = 1; i < p.size() - 1; i++) {
@@ -86,8 +69,6 @@ public class NsgaAlgorithm extends Algorithm {
     }
 
     private void normalSort(Front p, int poz) {
-        // sort
-
         for (int i = 0; i < p.size() - 1; i++) {
             for (int j = i + 1; j < p.size(); j++) {
                 if (p.get(i).getObjectiveValues()[poz] > p.get(j).getObjectiveValues()[poz]) {
@@ -99,28 +80,15 @@ public class NsgaAlgorithm extends Algorithm {
         }
     }
 
-    // this is bullshit
-
-    // take them notes down
-
-    // the happy hobb ?
-
     public void nonDominatedSort(Population pop) {
-        // this is not good.. this is bad..
-        // it think this one stinks like a  big fcking dump
-        // would you like to eat dump for 200 souls ?
-        // hell yeah..
         fronts.clear();
         Front currentFront = new Front();
-
-        // 1.  Mark every individual, by there domination
-
         try {
+            // sort the individuals, and then tag them
             for (int i = 0; i < pop.size(); i++) {
                 Individual p = pop.get(i);
                 for (int j = 0; j < pop.size(); j++) {
                     Individual q = pop.get(j);
-//					if (!p.equals(q)) {
                     if (dominates(p, q)) {
                         p.addDominatedSolution(q);
                     } else {
@@ -129,27 +97,21 @@ public class NsgaAlgorithm extends Algorithm {
                         }
                     }
                 }
-//				}
                 if (p.getDominationCount() == 0) {
-                    // no other solution dominates p
                     currentFront.add(p);
                 }
             }
         } catch (SomethingWentWrongException e) {
             e.printStackTrace();
         }
-
-        // build fronts, based on domination count
-
+        // build fronts, based on the tags
         fronts.add(currentFront);
         Front nextFront;
         int frontIndex = 0;
 
         while (currentFront.size() > 0) {
-            //	currentFront = ranking.get(frontIndex);
             nextFront = new Front();
             for (Individual p : currentFront) {
-                // iterate through
                 for (int j = 0; j < p.getDominatedSetSize(); j++) {
                     Individual q = p.getDominatedSolution(j);
                     q.decrementDominationCount();
@@ -164,7 +126,6 @@ public class NsgaAlgorithm extends Algorithm {
             fronts.add(nextFront);
             currentFront = nextFront;
         }
-        //ranking.removeLast();
     }
 
     private boolean dominates(Individual p, Individual q) {
@@ -183,8 +144,10 @@ public class NsgaAlgorithm extends Algorithm {
         // we make the selection based on the non dominated sort ranking
         LinkedList<Individual> result = new LinkedList<>();
 
+        // only by fitness.. or by front.. crowding distance is not here at all
+        // are the fronts sorted by themselves ?  or how are things represented ?
+
         int i = 0;
-        //int frontIndex = 0;
         while (i < count && fronts.size() > 0) {
             Front front = fronts.getFirst();
             for (Individual ind : front) {
@@ -193,23 +156,17 @@ public class NsgaAlgorithm extends Algorithm {
                 }
                 i++;
             }
-            //frontIndex++;
             fronts.removeFirst();
         }
-
         return new Population(result);
     }
 
     public LinkedList<Front> getRanking() {
-
         return fronts;
     }
 
-    // for now, only for testing purposes
     public LinkedList<Individual> getRankedList() {
-
         LinkedList<Individual> ranked = new LinkedList<>();
-
         for (Front l : fronts) {
             for (Individual ind : l) {
                 ranked.add(ind);
@@ -218,9 +175,7 @@ public class NsgaAlgorithm extends Algorithm {
         return ranked;
     }
 
-    // Returns the first front, if possible
     public Front getFirstFront() {
-
         Front result;
         if (fronts == null || fronts.size() < 1) {
             result = null;
@@ -231,13 +186,10 @@ public class NsgaAlgorithm extends Algorithm {
     }
 
     public int getFrontCount() {
-
         int result = 0;
         if (fronts != null) {
             result = fronts.size();
         }
         return result;
     }
-    // this is just a piece of shit.. don't worry love.. no one will notice this..
-
 }
