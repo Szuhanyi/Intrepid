@@ -50,10 +50,10 @@ public class OutputService {
         String out = "";
         for (int i = 0; i < p.size(); i++) {
             Individual ind = p.get(i);
-            out += i;
-            out += "   " + ind.getId();
-            out += " " + (float) ind.getFitness();
-            out += "  " + " r = " + ind.getRank();
+            out += "i="+i;
+          //  out += "   id=" + ind.getId();
+            out += " fitness=" + (float) ind.getFitness();
+            out += "  " + " rank = " + ind.getRank();
 
             double[] decVar = ind.getDecisionVariables();
             out += " x = " + (float) decVar[0];

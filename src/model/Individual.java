@@ -21,6 +21,7 @@ public class Individual {
     private LinkedList<Individual> dominatedSet;
     private int dominationCount;
     private double distance;
+    private static int idNumerator=0;
 
 
     /**
@@ -28,14 +29,14 @@ public class Individual {
      */
     public Individual() {
 
-        //	id = idNumerator++;
+        id = idNumerator++;
         dominatedSet = new LinkedList<>();
         objectiveValues = new double[0];
         decisionVariables = new double[0];
     }
 
     public Individual(Individual ind) {
-
+        this();
         this.distance = ind.distance;
         dominationCount = ind.getDominationCount();
         this.fitness = ind.fitness;
