@@ -60,7 +60,7 @@ public class MainWindow extends JFrame {
         getContentPane().add(lblFunctions);
 
         JSpinner spinnerGenerations = new JSpinner();
-        spinnerGenerations.setModel(new SpinnerNumberModel(new Integer(3), null, null, new Integer(1)));
+        spinnerGenerations.setModel(new SpinnerNumberModel(new Integer(10), null, null, new Integer(1)));
         spinnerGenerations.setBounds(27, 201, 56, 22);
         getContentPane().add(spinnerGenerations);
 
@@ -69,7 +69,7 @@ public class MainWindow extends JFrame {
         getContentPane().add(lblGenerations);
 
         JSpinner spinnerPopulationSize = new JSpinner();
-        spinnerPopulationSize.setModel(new SpinnerNumberModel(new Integer(100), null, null, new Integer(1)));
+        spinnerPopulationSize.setModel(new SpinnerNumberModel(new Integer(200), null, null, new Integer(1)));
         spinnerPopulationSize.setBounds(27, 146, 56, 22);
         getContentPane().add(spinnerPopulationSize);
 
@@ -247,9 +247,15 @@ public class MainWindow extends JFrame {
             plot.showMeTheGraph(opt);
         }
 
+<<<<<<< HEAD
         Metrics metr = new Metrics();
         double delta = metr.getAvarageDistanceDelta(opt);
         double gamma = metr.getDistributionMetricSecond(opt);
+=======
+//        Metrics metr = new Metrics();
+//        double delta = metr.getAvarageDistanceDelta(opt);
+//        double gamma = metr.getDistributionMetricSecond(opt);
+>>>>>>> d1ad572e039e852ee3d658b344bfa3a411f21dd4
 //
 //        System.out.println("Convergence: " + delta);
 //        System.out.println("Distance: " + gamma);
