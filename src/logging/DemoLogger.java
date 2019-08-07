@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.*;
 
 public class DemoLogger  {
-
+// maybe later.. this should have a lower priority for now... just like that
     public DemoLogger() {
         FileHandler fh = null;
         LogManager lm = LogManager.getLogManager();

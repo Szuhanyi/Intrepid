@@ -8,8 +8,16 @@ import java.util.LinkedList;
 
 public class Metrics {
 
-    private double metricSpread(double df, double dl, double deltaD, double[] d) {
 
+    /**
+     * this definition is quite bad
+     * @param df
+     * @param dl
+     * @param deltaD
+     * @param d
+     * @return
+     */
+    private double metricSpread(double df, double dl, double deltaD, double[] d) {
         double sum = 0;
         for (int i = 0; i < d.length; i++) {
             sum += Math.abs(d[i] - deltaD);
@@ -19,12 +27,16 @@ public class Metrics {
         return result;
     }
 
-    public double getDistributionMetricSecond(Population p) {
 
+    /**
+     * This def needs refinement
+     * @param p
+     * @return
+     */
+    public double getDistributionMetricSecond(Population p) {
         //LinkedList<Individual> test = new LinkedList<>();
         // calculate first the avg distance
         // 1. sort the based on one value
-
         p.SortByObjectiveValue(1);
         double[] d = new double[p.size() - 1];
         double sum = 0;
@@ -51,7 +63,6 @@ public class Metrics {
         xl[0] = bound[0];
         xl[1] = bound[1];
 
-
 //		for (int i = 0; i < xf.length; i++) {
 //			xf[i] = f.getParetoMinValue()[i];
 //			xl[i] = f.getParetoMaxValue()[i];
@@ -72,7 +83,11 @@ public class Metrics {
         return result;
     }
 
-
+    /**
+     * Def needs refinement
+     * @param p
+     * @return
+     */
     public double getAvarageDistanceDelta(Population p) {
 
         LinkedList<Individual> test = new LinkedList<Individual>();
@@ -110,6 +125,10 @@ public class Metrics {
         return result;
     }
 
+    /**
+     * who are these split values ??
+     * @return
+     */
     private LinkedList<Double[]> generateSplitValues() {
 
         Function f = Function.getInstance();
@@ -147,8 +166,11 @@ public class Metrics {
     }
 
     /**
-     * Distane metric calculation  test function
+     * Distance metric calculation  test function
+     *  there are tests for that .. we should realocate these things ..
      *
+     *  Who the fck is a metric ? .. why is this encoded like shit.. why is my keyboard so bad.. it just doesn't work as well as the one in the office..
+     *  and this one costs like 3 times more.. and this razer is just shit..
      * @param p
      * @return
      */
@@ -168,6 +190,9 @@ public class Metrics {
                 distance.add(m);
             }
         }
+        // who are the m values ?
+        // but for truly to know what is going on, we should check whether we should do something or not.. something great should be happeining here.. We are not the ones who should live along
+        // we are not quite adequate
         //calculate the average of the m values
         double sum = 0;
         for (int i = 0; i < distance.size(); i++) {
@@ -179,11 +204,9 @@ public class Metrics {
     }
 
     private double eucDistance(double[] a, double[] b) {
-
-        double result = 0;
-        result = Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
-
-        return result;
+//        double result = 0;
+        return  Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
+        //return result;
     }
 
 }

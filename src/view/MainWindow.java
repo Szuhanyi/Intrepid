@@ -161,7 +161,6 @@ public class MainWindow extends JFrame {
         JButton btnPauseT = new JButton("Pause T");
         btnPauseT.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 counter.pauseCounting();
             }
         });
@@ -184,12 +183,10 @@ public class MainWindow extends JFrame {
     }
 
     public void setT(int t) {
-
         textFieldT.setText(Integer.toString(t));
     }
 
     private void runSimulation() {
-
         Attributes.setCrossoverProbability(crossoverProbability);
         Attributes.setCycleCount(generationCount);
         Attributes.setMutationProbability(mutationProbability);
@@ -245,7 +242,6 @@ public class MainWindow extends JFrame {
         Population opt = a.optimize(p, Attributes.getCycleCount());
         output.printByFitness(opt);
 
-
         if (needPlotting) {
             Plotter plot = new Plotter();
             plot.showMeTheGraph(opt);
@@ -254,9 +250,9 @@ public class MainWindow extends JFrame {
         Metrics metr = new Metrics();
         double delta = metr.getAvarageDistanceDelta(opt);
         double gamma = metr.getDistributionMetricSecond(opt);
-
-        System.out.println("Convergence: " + delta);
-        System.out.println("Distance: " + gamma);
+//
+//        System.out.println("Convergence: " + delta);
+//        System.out.println("Distance: " + gamma);
 
     }
 }

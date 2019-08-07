@@ -12,10 +12,7 @@ class NsgaAlgorithmTest {
 
     @org.junit.jupiter.api.Test
     void nonDominatedSort() {
-    // should I create a case manually ? and then implement it here ?
-        // what not is really
-
-
+        // mail canvas.. h
     }
 
     @org.junit.jupiter.api.Test

@@ -14,7 +14,6 @@ public class Attributes {
     private static int t = 0;
 
     public static double getCrossoverProbability() {
-
         return crossoverProbability;
     }
 
@@ -23,7 +22,6 @@ public class Attributes {
     }
 
     public static double getMutationProbability() {
-
         return mutationProbability;
     }
 
@@ -32,7 +30,6 @@ public class Attributes {
     }
 
     public static int getPopulationSize() {
-
         return populationSize;
     }
 
@@ -41,7 +38,6 @@ public class Attributes {
     }
 
     public static int getCycleCount() {
-
         return cycleCount;
     }
 
@@ -50,15 +46,11 @@ public class Attributes {
     }
 
     public static int getT() {
-
         return t;
     }
 
     public static void setT(int tt) {
-
         //not this is just an addition, but it could be a random number generation as well
         t = tt;
     }
-
-
 }

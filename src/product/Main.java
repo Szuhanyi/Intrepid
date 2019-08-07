@@ -24,8 +24,6 @@ public class Main {
 
         MainWindow m = new MainWindow();
         m.setVisible(true);
-
-
 //         new DemoLogger();
     }
 }

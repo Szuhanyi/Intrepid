@@ -20,14 +20,17 @@ public class Counter extends Thread {
      * rate = 4 by default
      */
     public Counter() {
-
         running = true;
         paused = false;
         rate = 1;
     }
 
-    public Counter(int sleepTime) {
-
+    /**
+     *  Sleep intervals in seconds
+     * @param sleepTime
+     */
+    public Counter(MainWindow mw, int sleepTime) {
+        this(mw);
         this.rate = sleepTime;
     }
 
@@ -37,9 +40,7 @@ public class Counter extends Thread {
     }
 
     public void run() {
-
         while (running) {
-
             try {
                 sleep(rate * 1000);
                 if (!paused) {
@@ -53,24 +54,18 @@ public class Counter extends Thread {
             }
         }
     }
-
     public void setT(int tt) {
         t = tt;
     }
-
     public void stopCounting() {
-
         running = false;
     }
 
     public void pauseCounting() {
-
         paused = true;
     }
 
     public void continueCounting() {
-
         paused = false;
     }
-
 }

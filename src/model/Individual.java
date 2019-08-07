@@ -22,12 +22,16 @@ public class Individual {
     private int dominationCount;
     private double distance;
 
-
     /**
+     *  Placeholder for a solution.
+     *  A solution is a set of value pairs, which represent a solution for a given function.
+     *  f(x) = y. where x  = 1,n, y = 1,m, values..
+     *  but how van they differ ? when the are in the same function ???
+     *
+     *  Pls do something or kill yourself..
      *
      */
     public Individual() {
-
         //	id = idNumerator++;
         dominatedSet = new LinkedList<>();
         objectiveValues = new double[0];
@@ -35,7 +39,6 @@ public class Individual {
     }
 
     public Individual(Individual ind) {
-
         this.distance = ind.distance;
         dominationCount = ind.getDominationCount();
         this.fitness = ind.fitness;
@@ -62,7 +65,6 @@ public class Individual {
      * @return
      */
     public boolean lessThen(Individual q) {
-
         boolean result = false;
         int counter = 0;
         double[] qObjValues = q.getObjectiveValues();
@@ -87,7 +89,6 @@ public class Individual {
     }
 
     public int getDominatedSetSize() {
-
         if (dominatedSet == null) {
             dominatedSet = new LinkedList<>();
         }
@@ -95,20 +96,17 @@ public class Individual {
     }
 
     public void addDominatedSolution(Individual p) {
-
         if (dominatedSet == null)
             dominatedSet = new LinkedList<Individual>();
         dominatedSet.add(p);
     }
 
     public void removeDominatedSolution(Individual p) {
-
         if (dominatedSet != null)
             dominatedSet.remove(p);
     }
 
     public Individual getDominatedSolution(int index) {
-
         Individual result = null;
         if (index >= 0 && index < dominatedSet.size()) {
             result = dominatedSet.get(index);
@@ -126,55 +124,45 @@ public class Individual {
     }
 
     public void decrementDominationCount() {
-
         if (dominationCount > 0)
             dominationCount--;
     }
 
     public int getDominationCount() {
-
         return dominationCount;
     }
 
     // attribute encapsulation
 
     public int getId() {
-
         return id;
     }
 
     public void setId(int _id) {
-
         this.id = _id;
     }
 
     public double[] getDecisionVariables() {
-
         return decisionVariables;
     }
 
     public void setDecisionVariables(double[] _decisionVariables) {
-
         this.decisionVariables = _decisionVariables;
     }
 
     public double[] getObjectiveValues() {
-
         return objectiveValues;
     }
 
     public void setObjectiveValues(double[] _objectiveValues) {
-
         this.objectiveValues = _objectiveValues;
     }
 
     public double getDistance() {
-
         return distance;
     }
 
     public void setDistance(double distance) {
-
         this.distance = distance;
     }
 

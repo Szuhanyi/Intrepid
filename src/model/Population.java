@@ -16,21 +16,19 @@ import java.util.List;
  */
 public class Population implements Output {
 
-    private LinkedList<Individual> list;
-
+    private LinkedList<Individual> individuals;
 
     public Population() {
-        list = new LinkedList<Individual>();
+        individuals = new LinkedList<Individual>();
     }
-
 
     public Population(List<Individual> init) {
         this();
         if (init != null) {
-            init.stream().forEach(ind -> list.add(new Individual(ind)));
+            init.stream().forEach(ind -> individuals.add(new Individual(ind)));
 //            for (int i = 0; i < init.size(); i++) {
 //                Individual ind = init.get(i);
-//                Individual newInd = new Individual(ind);
+//                Individual newInd = new Individual(ind);ix
 //                list.add(newInd);
 //            }
         }
@@ -51,7 +49,7 @@ public class Population implements Output {
     public void evaluate() {
         Function f = Function.getInstance();
         if (f != null) {
-            for (Individual i : list) {
+            for (Individual i : individuals) {
                 f.evaluate(i);
             }
         } else {
@@ -67,19 +65,14 @@ public class Population implements Output {
      * @return
      */
     public Population append(Population parentGeneration) {
-
         List<Individual> newList = new LinkedList<>();
-
-        for (int i = 0; i < list.size(); i++) {
-            newList.add(list.get(i));
+        for (int i = 0; i < individuals.size(); i++) {
+            newList.add(individuals.get(i));
         }
-
         for (int i = 0; i < parentGeneration.size(); i++) {
             newList.add(parentGeneration.get(i));
         }
-
         Population p = new Population(newList);
-
         return p;
     }
 
@@ -87,20 +80,20 @@ public class Population implements Output {
 
         if (other != null) {
             for (int i = 0; i < other.size(); i++) {
-                list.add(other.get(i));
+                individuals.add(other.get(i));
             }
         }
     }
 
     public int size() {
 
-        return list.size();
+        return individuals.size();
     }
 
     public Individual get(int index) {
 
-        if (index >= 0 && index < list.size())
-            return list.get(index);
+        if (index >= 0 && index < individuals.size())
+            return individuals.get(index);
         else
             return null;
     }
@@ -110,7 +103,7 @@ public class Population implements Output {
         // oh my
         // how long should that be ?
 
-        Population offspring = new Population(this.list);
+        Population offspring = new Population(this.individuals);
 
         new Crossover().modify(offspring);
         new Mutation().modify(offspring);
@@ -127,7 +120,7 @@ public class Population implements Output {
 
         //TestDataSeeder tds = TestDataSeeder.getInstance();
         //list = tds.getData(length);
-        list = TestDataSeeder.getInstance().getData(length);
+        individuals = TestDataSeeder.getInstance().getData(length);
     }
 
     @Override
@@ -145,10 +138,10 @@ public class Population implements Output {
     @Override
     public void printToConsole() {
 
-        for (int i = 0; i < list.size(); i++) {
-            String line = list.get(i).getId() + " " + list.get(i).getFitness();
-            for (int j = 0; j < list.get(i).getObjectiveValues().length; j++) {
-                line += "      " + list.get(i).getObjectiveValues()[j];
+        for (int i = 0; i < individuals.size(); i++) {
+            String line = individuals.get(i).getId() + " " + individuals.get(i).getFitness();
+            for (int j = 0; j < individuals.get(i).getObjectiveValues().length; j++) {
+                line += "      " + individuals.get(i).getObjectiveValues()[j];
             }
             System.out.println(line);
         }
@@ -156,25 +149,25 @@ public class Population implements Output {
 
     // this does not look that cool.. first do the logging
     public void sortByFitness() {
-        for (int i = 0; i < list.size() - 1; i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                if (list.get(i).getFitness() > list.get(j).getFitness()) {
-                    Individual t = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, t);
+        for (int i = 0; i < individuals.size() - 1; i++) {
+            for (int j = i + 1; j < individuals.size(); j++) {
+                if (individuals.get(i).getFitness() > individuals.get(j).getFitness()) {
+                    Individual t = individuals.get(i);
+                    individuals.set(i, individuals.get(j));
+                    individuals.set(j, t);
                 }
             }
         }
     }
 
     public void SortByObjectiveValue(int index) {
-        if (list.size() > 0 && list.get(0).getObjectiveValues().length >= index) {
-            for (int i = 0; i < list.size() - 1; i++) {
-                for (int j = i + 1; j < list.size(); j++) {
-                    if (list.get(i).getObjectiveValues()[index] > list.get(j).getObjectiveValues()[index]) {
-                        Individual t = list.get(i);
-                        list.set(i, list.get(j));
-                        list.set(j, t);
+        if (individuals.size() > 0 && individuals.get(0).getObjectiveValues().length >= index) {
+            for (int i = 0; i < individuals.size() - 1; i++) {
+                for (int j = i + 1; j < individuals.size(); j++) {
+                    if (individuals.get(i).getObjectiveValues()[index] > individuals.get(j).getObjectiveValues()[index]) {
+                        Individual t = individuals.get(i);
+                        individuals.set(i, individuals.get(j));
+                        individuals.set(j, t);
                     }
                 }
             }
@@ -183,17 +176,14 @@ public class Population implements Output {
     }
 
     public LinkedList<Individual> getGenom() {
-
-        return list;
+        return individuals;
     }
 
     public void setGenom(LinkedList<Individual> genom) {
-
-        list = genom;
+        individuals = genom;
     }
 
     public void normalizeObjectiveValues() {
-
     }
 
 }

@@ -20,7 +20,6 @@ public class OutputService {
     }
 
     public static OutputService getInstance() {
-
         if (instance == null) {
             instance = new OutputService();
         }
@@ -28,17 +27,19 @@ public class OutputService {
     }
 
     public void printById(Population p) {
-
         String text = getValues(p);
         output.print(text);
     }
 
-    public void printByNonDominatedRank(Population p) {
 
+    /**
+     * tag.. you're it
+     * @param p
+     */
+    public void printByNonDominatedRank(Population p) {
     }
 
     public void printByFitness(Population p) {
-
         //sort it ? and then print it out
         p.sortByFitness();
 
@@ -46,7 +47,6 @@ public class OutputService {
     }
 
     private String getValues(Population p) {
-
         String out = "";
         for (int i = 0; i < p.size(); i++) {
             Individual ind = p.get(i);
@@ -73,7 +73,6 @@ public class OutputService {
     }
 
     public void setOutputToConsole() {
-
         output = new OutputConsole();
     }
 
@@ -82,8 +81,11 @@ public class OutputService {
         output = new OutputFile(folderPath);
     }
 
-    public void setOutputToApplication() {
 
+    /**
+     * print data do the app
+     */
+    public void setOutputToApplication() {
         output = new OutputApplication();
     }
 
