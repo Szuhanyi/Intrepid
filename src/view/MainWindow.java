@@ -247,15 +247,10 @@ public class MainWindow extends JFrame {
             plot.showMeTheGraph(opt);
         }
 
-<<<<<<< HEAD
-        Metrics metr = new Metrics();
-        double delta = metr.getAvarageDistanceDelta(opt);
-        double gamma = metr.getDistributionMetricSecond(opt);
-=======
+
 //        Metrics metr = new Metrics();
 //        double delta = metr.getAvarageDistanceDelta(opt);
 //        double gamma = metr.getDistributionMetricSecond(opt);
->>>>>>> d1ad572e039e852ee3d658b344bfa3a411f21dd4
 //
 //        System.out.println("Convergence: " + delta);
 //        System.out.println("Distance: " + gamma);

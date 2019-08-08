@@ -33,22 +33,15 @@ public class Individual {
      *
      */
     public Individual() {
-<<<<<<< HEAD
-        //	id = idNumerator++;
-=======
 
         id = idNumerator++;
->>>>>>> d1ad572e039e852ee3d658b344bfa3a411f21dd4
         dominatedSet = new LinkedList<>();
         objectiveValues = new double[0];
         decisionVariables = new double[0];
     }
 
     public Individual(Individual ind) {
-<<<<<<< HEAD
-=======
         this();
->>>>>>> d1ad572e039e852ee3d658b344bfa3a411f21dd4
         this.distance = ind.distance;
         dominationCount = ind.getDominationCount();
         this.fitness = ind.fitness;
