@@ -31,12 +31,14 @@ public class OutputService {
         output.print(text);
     }
 
-
     /**
      * tag.. you're it
      * @param p
      */
     public void printByNonDominatedRank(Population p) {
+        // what is this for ?
+
+        // where
     }
 
     public void printByFitness(Population p) {
@@ -77,10 +79,8 @@ public class OutputService {
     }
 
     public void setOutputToFile(String folderPath) {
-
         output = new OutputFile(folderPath);
     }
-
 
     /**
      * print data do the app
@@ -88,5 +88,4 @@ public class OutputService {
     public void setOutputToApplication() {
         output = new OutputApplication();
     }
-
 }

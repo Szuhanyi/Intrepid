@@ -13,6 +13,10 @@ public abstract class Function {
     protected double[] minValue;
     protected double[] maxValue;
     protected int variableCount;
+
+    /**
+     * Value used at the crowding distance calculation
+     */
     protected double[] paretoMin;
     protected double[] paretoMax;
     protected double[] boundaryParetoSolutions;
@@ -20,16 +24,15 @@ public abstract class Function {
     public static Function getInstance() {
 
         if (instance == null) {
-            instance = new FunctionFonseca(-4, 4);
+          //  instance = new FunctionFonseca(-4, 4);
+            int a = 7;
+            instance = new FunctionSchaffer(-a,a);
         }
         return instance;
     }
 
     public static void newFonseca() {
-
-
         instance = new FunctionFonseca(-4, 4);
-
     }
 
     public static void newSchaffer() {

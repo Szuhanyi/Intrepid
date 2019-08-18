@@ -20,7 +20,7 @@ public class MyFrame extends JFrame {
         panelPlotter = new MyPanel();
         getContentPane().add(panelPlotter, BorderLayout.CENTER);
         panelPlotter.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        int offset = 250;
+        int offset = 550;
 
         this.setLocation(locationX, locationY);
 
@@ -45,9 +45,9 @@ public class MyFrame extends JFrame {
         setVisible(true);
     }
 
-    public void addToPlot(double x, double y) {
+    public void addToPlot(double x, double y, int rank) {
 
-        panelPlotter.paintPoint(x, y);
+        panelPlotter.paintPoint(x, y, rank);
     }
 
     public void startPlotting() {

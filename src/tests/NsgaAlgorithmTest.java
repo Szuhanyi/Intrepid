@@ -13,6 +13,9 @@ class NsgaAlgorithmTest {
     @org.junit.jupiter.api.Test
     void nonDominatedSort() {
         // mail canvas.. h
+        // have a look at the non domination sort algorithm.
+        // we need
+
     }
 
     @org.junit.jupiter.api.Test

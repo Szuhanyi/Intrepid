@@ -8,15 +8,13 @@ public class Plotter {
 
 
     public Plotter() {
-
         frame = new MyFrame();
     }
 
     public void showMeTheGraph(Population p) {
-
         for (int i = 0; i < p.size(); i++) {
             double[] obj = p.get(i).getObjectiveValues();
-            frame.addToPlot(obj[0], obj[1]);
+            frame.addToPlot(obj[0], obj[1], p.get(i).getRank());
         }
         frame.startPlotting();
     }

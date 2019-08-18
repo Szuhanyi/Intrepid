@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainWindow extends JFrame {
-
     /**
      *
      */
@@ -32,11 +31,10 @@ public class MainWindow extends JFrame {
     private Counter counter;
     private String selectedFunctionName;
     private JTextField textFieldT;
-    public MainWindow() {
 
+    public MainWindow() {
         instance = this;
         getContentPane().setLayout(null);
-
         String[] data = {"Schaffer", "Fonseca1", "Bihn & Korn"};
         JList<String> listFunctions = new JList<>(data);
         listFunctions.setVisibleRowCount(4);
@@ -49,7 +47,6 @@ public class MainWindow extends JFrame {
 //				return values[index];
 //			}
 //		});
-
         listFunctions.setSelectedIndex(0);
         listFunctions.setBounds(217, 82, 145, 153);
 
@@ -60,7 +57,7 @@ public class MainWindow extends JFrame {
         getContentPane().add(lblFunctions);
 
         JSpinner spinnerGenerations = new JSpinner();
-        spinnerGenerations.setModel(new SpinnerNumberModel(new Integer(10), null, null, new Integer(1)));
+        spinnerGenerations.setModel(new SpinnerNumberModel(new Integer(1), null, null, new Integer(1)));
         spinnerGenerations.setBounds(27, 201, 56, 22);
         getContentPane().add(spinnerGenerations);
 
@@ -123,7 +120,6 @@ public class MainWindow extends JFrame {
         scrollPane.setViewportView(txtrTextArea);
         // set the output object for the service
         ApplicationConsoleService.getInstance().setOutput(txtrTextArea);
-
 
         JLabel lblMutationProbability = new JLabel("Mutation Probability");
         lblMutationProbability.setBounds(27, 72, 123, 16);

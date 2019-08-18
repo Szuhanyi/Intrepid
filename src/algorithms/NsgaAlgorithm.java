@@ -20,9 +20,15 @@ public class NsgaAlgorithm extends Algorithm {
     @Override
     public Population optimize(Population parentGeneration, int cycleCount) {
         evaluate(parentGeneration);
+        Population newGeneration = null;
+        Population allGene = null;
+
+        // till this point everything seems to be fine
+        // what else can be accomplished ?
+
         for (int i = 0; i < cycleCount; i++) {
-            Population newGeneration = parentGeneration.spawnNewPopulation();
-            Population allGene = parentGeneration.append(newGeneration);
+            newGeneration = parentGeneration.spawnNewPopulation();
+            allGene = parentGeneration.append(newGeneration);
             evaluate(allGene);
             parentGeneration = makeSelection(Attributes.getPopulationSize());
         }
@@ -36,6 +42,7 @@ public class NsgaAlgorithm extends Algorithm {
         fitnessAssignment(p);
     }
 
+
     private void fitnessAssignment(Population p) {
         for (int i = 0; i < p.size(); i++) {
             Individual ind = p.get(i);
@@ -47,11 +54,13 @@ public class NsgaAlgorithm extends Algorithm {
         }
     }
 
+
     private void assignCrowdingDistance() {
         for (Front front : fronts) {
             crowdingDistanceAssignment(front);
         }
     }
+
 
     private void crowdingDistanceAssignment(Front p) {
         if (p.size() == 0) {
@@ -68,10 +77,11 @@ public class NsgaAlgorithm extends Algorithm {
         }
     }
 
-    private void normalSort(Front p, int poz) {
+
+    private void normalSort(Front p, int pozOfObjValue) {
         for (int i = 0; i < p.size() - 1; i++) {
             for (int j = i + 1; j < p.size(); j++) {
-                if (p.get(i).getObjectiveValues()[poz] > p.get(j).getObjectiveValues()[poz]) {
+                if (p.get(i).getObjectiveValues()[pozOfObjValue] > p.get(j).getObjectiveValues()[pozOfObjValue]) {
                     Individual ind = p.get(i);
                     p.set(i, p.get(j));
                     p.set(j, ind);
@@ -79,6 +89,7 @@ public class NsgaAlgorithm extends Algorithm {
             }
         }
     }
+
 
     public void nonDominatedSort(Population pop) {
         fronts.clear();

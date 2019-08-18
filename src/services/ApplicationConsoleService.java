@@ -27,5 +27,4 @@ public class ApplicationConsoleService {
     public void setOutput(JTextArea output) {
         out = output;
     }
-
 }
