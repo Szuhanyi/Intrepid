@@ -18,12 +18,12 @@ public class Main {
 //		
 //		Plotter plot = new Plotter();
 //		//output.printById(p);
-//		//plot.showMeTheGraph(p);	
+//		plot.showMeTheGraph(p);
 //		output.printByFitness(opt);
 //		plot.showMeTheGraph(opt);
 
-        MainWindow m = new MainWindow();
-        m.setVisible(true);
+//        MainWindow m = new MainWindow();
+//        m.setVisible(true);
 //         new DemoLogger();
     }
 }

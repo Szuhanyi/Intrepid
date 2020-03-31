@@ -47,6 +47,7 @@ public class MainWindow extends JFrame {
 //				return values[index];
 //			}
 //		});
+
         listFunctions.setSelectedIndex(0);
         listFunctions.setBounds(217, 82, 145, 153);
 
