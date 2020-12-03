@@ -1,25 +1,28 @@
 package product;
 
-import logging.DemoLogger;
-import view.MainWindow;
+import algorithms.Algorithm;
+import algorithms.NsgaAlgorithm;
+import model.Population;
+import output.OutputService;
+import services.Attributes;
+import view.Plotter;
 
 public class Main {
 
     public static void main(String[] args) {
 
-//		// we shall make this man great again
-//		OutputService output = OutputService.getInstance();			
-//		Function.newSchaffer();			
-//		//Function.newBihnKorn();
-//		Population p = new Population(Attributes.getPopulationSize());
-//		Algorithm a = new NsgaAlgorithm();		
-//		
-//		Population opt = a.optimize(p, Attributes.getCycleCount());
-//		
-//		Plotter plot = new Plotter();
-//		//output.printById(p);
-//		plot.showMeTheGraph(p);
-//		output.printByFitness(opt);
+		OutputService output = OutputService.getInstance();
+		//Function.newSchaffer();
+		//Function.newBihnKorn();
+		Population p = new Population(Attributes.getPopulationSize());
+ 		Algorithm a = new NsgaAlgorithm();
+
+		Population opt = a.optimize(p, Attributes.getCycleCount());
+
+		Plotter plot = new Plotter();
+		output.printById(p);
+		plot.showMeTheGraph(p);
+		output.printByFitness(opt);
 //		plot.showMeTheGraph(opt);
 
 //        MainWindow m = new MainWindow();

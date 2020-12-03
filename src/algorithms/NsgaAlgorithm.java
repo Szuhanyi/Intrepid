@@ -15,17 +15,13 @@ public class NsgaAlgorithm extends Algorithm {
     public NsgaAlgorithm() {
         fronts = new LinkedList<Front>();
     }
-
+ 
 
     @Override
     public Population optimize(Population parentGeneration, int cycleCount) {
         evaluate(parentGeneration);
         Population newGeneration = null;
         Population allGene = null;
-
-        // till this point everything seems to be fine
-        // what else can be accomplished ?
-
         for (int i = 0; i < cycleCount; i++) {
             newGeneration = parentGeneration.spawnNewPopulation();
             allGene = parentGeneration.append(newGeneration);
@@ -35,6 +31,10 @@ public class NsgaAlgorithm extends Algorithm {
         return parentGeneration;
     }
 
+    /**
+     * assigne fitenss to every member of the populations
+     * @param p
+     */
 
     private void evaluate(Population p) {
         nonDominatedSort(p);
@@ -92,6 +92,7 @@ public class NsgaAlgorithm extends Algorithm {
 
 
     public void nonDominatedSort(Population pop) {
+        // create tiers of lists, each will be a front, a different tier
         fronts.clear();
         Front currentFront = new Front();
         try {

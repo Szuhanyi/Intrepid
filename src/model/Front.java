@@ -4,11 +4,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 
 /**
+ *
  * Some sort of holding class, for representing a tier of solutions.
+ *
  */
 public class Front implements Iterable<Individual>  {
 
@@ -18,10 +19,12 @@ public class Front implements Iterable<Individual>  {
         solutions = new ArrayList<Individual>();
     }
 
-
     public Front(List<Individual> list) {
+
         // create a new front with these exact individuals
-        this();
+
+        this(); // isn't this implicitly called ? do I need to be explicit ...
+
         for(Individual i : list) {
             solutions.add(i);
         }
@@ -56,7 +59,6 @@ public class Front implements Iterable<Individual>  {
     public Iterator<Individual> iterator() {
         return solutions.iterator();
     }
-
 
 }
 
