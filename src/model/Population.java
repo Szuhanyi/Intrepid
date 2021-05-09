@@ -77,7 +77,6 @@ public class Population implements Output {
     }
 
     public void appendToHimself(Population other) {
-
         if (other != null) {
             for (int i = 0; i < other.size(); i++) {
                 individuals.add(other.get(i));
@@ -86,12 +85,10 @@ public class Population implements Output {
     }
 
     public int size() {
-
         return individuals.size();
     }
 
     public Individual get(int index) {
-
         if (index >= 0 && index < individuals.size())
             return individuals.get(index);
         else

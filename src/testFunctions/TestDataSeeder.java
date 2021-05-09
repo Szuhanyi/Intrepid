@@ -8,9 +8,10 @@ import java.util.Random;
 public class TestDataSeeder {
 
     private static TestDataSeeder instance;
-
+    private Random rand;
 
     private TestDataSeeder() {
+        rand = new Random();
     }
 
     public static TestDataSeeder getInstance() {
@@ -42,7 +43,7 @@ public class TestDataSeeder {
     private double[] genURand(int length, double[] min, double[] max) {
         double[] result = new double[length];
         // I hope this is a uniform generator
-        Random rand = new Random();
+
         for (int i = 0; i < length; i++) {
             result[i] = rand.nextDouble() * (max[i] - min[i]) + min[i];
         }

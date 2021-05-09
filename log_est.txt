@@ -2,8 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-06-27T04:29:45</date>
-  <millis>1561598985433</millis>
+  <date>2020-12-07T14:31:23.972186800Z</date>
+  <millis>1607351483972</millis>
+  <nanos>186800</nanos>
   <sequence>0</sequence>
   <logger>DemoLogger</logger>
   <level>INFO</level>
@@ -13,8 +14,9 @@
   <message>test 1</message>
 </record>
 <record>
-  <date>2019-06-27T04:29:45</date>
-  <millis>1561598985518</millis>
+  <date>2020-12-07T14:31:23.997375700Z</date>
+  <millis>1607351483997</millis>
+  <nanos>375700</nanos>
   <sequence>1</sequence>
   <logger>DemoLogger</logger>
   <level>INFO</level>

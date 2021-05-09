@@ -7,5 +7,4 @@ public class OutputConsole extends OutputDestination {
 
         System.out.println(s);
     }
-    // what are u doing here ? I think u facking suck a fcking dick.. ur dipshit.. ahhh
 }

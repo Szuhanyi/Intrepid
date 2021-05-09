@@ -5,28 +5,29 @@ import algorithms.NsgaAlgorithm;
 import model.Population;
 import output.OutputService;
 import services.Attributes;
+import testFunctions.Function;
 import view.Plotter;
 
 public class Main {
 
     public static void main(String[] args) {
 
-		OutputService output = OutputService.getInstance();
-		//Function.newSchaffer();
-		//Function.newBihnKorn();
+		Function.newBihnKorn();
 		Population p = new Population(Attributes.getPopulationSize());
+
  		Algorithm a = new NsgaAlgorithm();
 
-		Population opt = a.optimize(p, Attributes.getCycleCount());
+ 		Population optimal = a.optimize(p,Attributes.getCycleCount());
 
-		Plotter plot = new Plotter();
-		output.printById(p);
-		plot.showMeTheGraph(p);
-		output.printByFitness(opt);
-//		plot.showMeTheGraph(opt);
 
-//        MainWindow m = new MainWindow();
-//        m.setVisible(true);
-//         new DemoLogger();
+		OutputService output = OutputService.getInstance();
+		output.setOutputToConsole();
+		output.printById(optimal);
+
+		Plotter plotter = new Plotter();
+		plotter.showMeTheGraph(optimal);
+		System.out.println(optimal.size());
+
+
     }
 }

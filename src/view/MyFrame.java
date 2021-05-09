@@ -20,7 +20,7 @@ public class MyFrame extends JFrame {
         panelPlotter = new MyPanel();
         getContentPane().add(panelPlotter, BorderLayout.CENTER);
         panelPlotter.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        int offset = 550;
+        int offset = 1000;
 
         this.setLocation(locationX, locationY);
 

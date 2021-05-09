@@ -12,6 +12,7 @@ public class MyPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private LinkedList<Point> mesh;
 
+
     private double unit;
 
     public MyPanel() {
@@ -21,10 +22,13 @@ public class MyPanel extends JPanel {
         mesh = new LinkedList<>();
     }
 
+    /**
+     * Call it when the data is ready to plot
+     */
     public void paintMesh() {
         double max = getMax();
         Dimension d = this.getSize();
-        unit = d.getWidth() / max / 4;
+        unit = d.getWidth() / max ;
         ///unit = unit;
 //		System.out.println(max);
 //		System.out.println(unit);
@@ -37,7 +41,6 @@ public class MyPanel extends JPanel {
         mesh.add(new Point(x,  y, rank));
         //paintMesh();
     }
-
 
     @Override
     public void paintComponent(Graphics g) {

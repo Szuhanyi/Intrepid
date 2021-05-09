@@ -9,7 +9,7 @@ public class Attributes {
 
     private static double mutationProbability = 0.01;
     private static double crossoverProbability = 0.5;
-    private static int populationSize = 50;
+    private static int populationSize = 500;
     private static int cycleCount = 100;
     private static int t = 0;
 

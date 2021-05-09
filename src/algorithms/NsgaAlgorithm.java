@@ -15,7 +15,6 @@ public class NsgaAlgorithm extends Algorithm {
     public NsgaAlgorithm() {
         fronts = new LinkedList<Front>();
     }
- 
 
     @Override
     public Population optimize(Population parentGeneration, int cycleCount) {
@@ -23,25 +22,27 @@ public class NsgaAlgorithm extends Algorithm {
         Population newGeneration = null;
         Population allGene = null;
         for (int i = 0; i < cycleCount; i++) {
-            newGeneration = parentGeneration.spawnNewPopulation();
+            newGeneration = new Population(Attributes.getPopulationSize());
             allGene = parentGeneration.append(newGeneration);
             evaluate(allGene);
             parentGeneration = makeSelection(Attributes.getPopulationSize());
+
+            System.out.printf("Parent generation's count is : %s", parentGeneration.size());
+            System.out.println();
         }
+
         return parentGeneration;
     }
 
     /**
-     * assigne fitenss to every member of the populations
+     * assign fitness to every member of the population
      * @param p
      */
-
     private void evaluate(Population p) {
         nonDominatedSort(p);
         assignCrowdingDistance();
         fitnessAssignment(p);
     }
-
 
     private void fitnessAssignment(Population p) {
         for (int i = 0; i < p.size(); i++) {
@@ -92,9 +93,9 @@ public class NsgaAlgorithm extends Algorithm {
 
 
     public void nonDominatedSort(Population pop) {
-        // create tiers of lists, each will be a front, a different tier
         fronts.clear();
         Front currentFront = new Front();
+        int noOfPopsTWhoDontDominateLikeLoosers = 0;
         try {
             // sort the individuals, and then tag them
             for (int i = 0; i < pop.size(); i++) {
@@ -106,6 +107,15 @@ public class NsgaAlgorithm extends Algorithm {
                     } else {
                         if (dominates(q, p)) {
                             p.incrementDominationCount();
+                        }
+                        else {
+                            // then you go to the shadow realm, and that's it!!
+                            // return to monke
+                            if(p != q)
+                                noOfPopsTWhoDontDominateLikeLoosers++;
+
+
+
                         }
                     }
                 }
@@ -121,7 +131,8 @@ public class NsgaAlgorithm extends Algorithm {
         Front nextFront;
         int frontIndex = 0;
 
-        while (currentFront.size() > 0) {
+        int threshold = 1000;
+        while (currentFront.size() > 0 && threshold-- > 0) {
             nextFront = new Front();
             for (Individual p : currentFront) {
                 for (int j = 0; j < p.getDominatedSetSize(); j++) {
@@ -134,10 +145,14 @@ public class NsgaAlgorithm extends Algorithm {
                     }
                 }
             }
-            frontIndex++;
-            fronts.add(nextFront);
-            currentFront = nextFront;
+            if(nextFront.size() > 0) {
+                frontIndex++;
+                fronts.add(nextFront);
+                currentFront = nextFront;
+            }
         }
+        System.out.printf("No of fronts : %s%n",frontIndex);
+
     }
 
     private boolean dominates(Individual p, Individual q) {

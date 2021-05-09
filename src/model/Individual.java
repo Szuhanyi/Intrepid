@@ -33,7 +33,6 @@ public class Individual {
      *
      */
     public Individual() {
-
         id = idNumerator++;
         dominatedSet = new LinkedList<>();
         objectiveValues = new double[0];
@@ -42,7 +41,6 @@ public class Individual {
 
     public Individual(Individual ind) {
         this();
-      //  id = ind.id;
         this.distance = ind.distance;
         dominationCount = ind.getDominationCount();
         this.fitness = ind.fitness;
@@ -71,21 +69,24 @@ public class Individual {
     public boolean lessThen(Individual q) {
         boolean result = false;
         int counter = 0;
-        double sigma = 0.0001;
+        double sigma = 0.001;
         double[] qObjValues = q.getObjectiveValues();
         for (int i = 0; i < objectiveValues.length; i++) {
             // Do i need here a sigma interval [p-q > sigma], in this case the solutions would be clustered a little bit better.
             // it may result in a better spread of solutions
             // TODO: investigate if using a turelmi interval would increase the spread of solutions
             //
-            if (objectiveValues[i] - qObjValues[i] > -sigma) { // 0.09 - 0.11 > -0.001
+
+            // q >= p + sigma
+            if (qObjValues[i] - objectiveValues[i]  >= sigma) { // 0.09 - 0.11 > -0.001
+
                 counter++;
             }
         }
         //at least one of them must be less then then other
         if (counter == q.getObjectiveValues().length) {
             for (int i = 0; i < q.getObjectiveValues().length; i++) {
-                if (objectiveValues[i] < qObjValues[i]) {
+                if (qObjValues[i] - objectiveValues[i]  > sigma) {
                     result = true;
                 }
             }
