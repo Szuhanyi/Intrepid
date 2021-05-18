@@ -73,6 +73,7 @@ public class Population implements Output {
             newList.add(parentGeneration.get(i));
         }
         Population p = new Population(newList);
+
         return p;
     }
 

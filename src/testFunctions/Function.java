@@ -22,7 +22,6 @@ public abstract class Function {
     protected double[] boundaryParetoSolutions;
 
     public static Function getInstance() {
-
         if (instance == null) {
           //  instance = new FunctionFonseca(-4, 4);
             int a = 7;

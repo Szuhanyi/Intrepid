@@ -56,17 +56,31 @@ public class MyPanel extends JPanel {
 
         gg.translate(offset, height - offset);
         gg.scale(1.0, -1.0);
+        unit = 2.7;
+      //  gg.drawOval((int)(unit * 1), (int)(unit * 1), 5, 5);
         for (Point p : mesh) {
+
+            Integer xx = (int) (unit * p.getY());
+            Integer yy = (int) (unit * p.getX());
+
+        //    yy = rotateX(yy);
+
             if(p.rank == 0) {
                 gg.setColor(Color.red);
-                gg.drawOval((int) (unit * p.getY()), (int) (unit * p.getX()), 5, 5);
+                // rotate ?
+                gg.drawOval(xx, yy , 5, 5);
                 gg.setColor(Color.black);
             }
             else
-            gg.drawOval((int) (unit * p.getY()), (int) (unit * p.getX()), 5, 5);
+            gg.drawOval(xx, yy, 5, 5);
 
             //g.drawOval((int)(unit * p.getX()), (int)(width - unit *  p.getY()), 5, 5);
         }
+
+    }
+
+    private int rotateX(Integer xx) {
+        return  -1*xx;
 
     }
 

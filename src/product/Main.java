@@ -17,8 +17,7 @@ public class Main {
 
  		Algorithm a = new NsgaAlgorithm();
 
- 		Population optimal = a.optimize(p,Attributes.getCycleCount());
-
+ 		Population optimal = a.optimize(p, Attributes.getCycleCount());
 
 		OutputService output = OutputService.getInstance();
 		output.setOutputToConsole();

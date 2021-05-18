@@ -12,6 +12,7 @@ public class Plotter {
 
     public Plotter() {
         frame = new MyFrame();
+
     }
 
     public void showMeTheGraph(Population p) {

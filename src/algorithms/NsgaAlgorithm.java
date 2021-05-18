@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 public class NsgaAlgorithm extends Algorithm {
 
-    private LinkedList<Front> fronts;
+    private final LinkedList<Front> fronts;
 
     public NsgaAlgorithm() {
         fronts = new LinkedList<Front>();
@@ -18,13 +18,19 @@ public class NsgaAlgorithm extends Algorithm {
 
     @Override
     public Population optimize(Population parentGeneration, int cycleCount) {
+
         evaluate(parentGeneration);
+
         Population newGeneration = null;
         Population allGene = null;
+
         for (int i = 0; i < cycleCount; i++) {
             newGeneration = new Population(Attributes.getPopulationSize());
+
             allGene = parentGeneration.append(newGeneration);
+
             evaluate(allGene);
+
             parentGeneration = makeSelection(Attributes.getPopulationSize());
 
             System.out.printf("Parent generation's count is : %s", parentGeneration.size());
@@ -34,13 +40,19 @@ public class NsgaAlgorithm extends Algorithm {
         return parentGeneration;
     }
 
+
     /**
      * assign fitness to every member of the population
      * @param p
      */
     private void evaluate(Population p) {
+        // fill in fronts
         nonDominatedSort(p);
+
+        // make sure that solutions are well spread across the space
         assignCrowdingDistance();
+
+        // convert front position and crowding distance into a scalar value
         fitnessAssignment(p);
     }
 
@@ -91,11 +103,15 @@ public class NsgaAlgorithm extends Algorithm {
         }
     }
 
-
     public void nonDominatedSort(Population pop) {
+        // create lines of solutions, called fronts
+        // 1st front contains the best solutions
         fronts.clear();
+
         Front currentFront = new Front();
+        // do not write code, while being emotionally unstable
         int noOfPopsTWhoDontDominateLikeLoosers = 0;
+
         try {
             // sort the individuals, and then tag them
             for (int i = 0; i < pop.size(); i++) {
@@ -110,12 +126,9 @@ public class NsgaAlgorithm extends Algorithm {
                         }
                         else {
                             // then you go to the shadow realm, and that's it!!
-                            // return to monke
+                            // return to monke, monkey, where calculator ?
                             if(p != q)
                                 noOfPopsTWhoDontDominateLikeLoosers++;
-
-
-
                         }
                     }
                 }

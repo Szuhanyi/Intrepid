@@ -10,8 +10,8 @@ public class MyFrame extends JFrame {
      */
 
     private static final long serialVersionUID = 1L;
-    private static int locationX = 50;
-    private static int locationY = 430;
+    private static int locationX = 0;
+    private static int locationY = 0;
     private MyPanel panelPlotter;
 
     public MyFrame() {
@@ -20,7 +20,7 @@ public class MyFrame extends JFrame {
         panelPlotter = new MyPanel();
         getContentPane().add(panelPlotter, BorderLayout.CENTER);
         panelPlotter.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        int offset = 1000;
+        int offset = 800;
 
         this.setLocation(locationX, locationY);
 
@@ -43,6 +43,7 @@ public class MyFrame extends JFrame {
         }
 
         setVisible(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void addToPlot(double x, double y, int rank) {
