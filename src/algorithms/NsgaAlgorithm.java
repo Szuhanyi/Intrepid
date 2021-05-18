@@ -8,6 +8,7 @@ import services.Attributes;
 
 import java.util.LinkedList;
 
+
 public class NsgaAlgorithm extends Algorithm {
 
     private final LinkedList<Front> fronts;

@@ -34,31 +34,25 @@ public class Front implements Iterable<Individual>  {
         solutions.add(i);
     }
 
-
     public void remove(Individual i) {
         solutions.remove(i);
     }
-
 
     public Individual get(int index) {
         return solutions.get(index);
     }
 
-
     public int size() {
         return solutions.size();
     }
-
 
     public void set(int index, Individual object) {
         solutions.set(index, object);
     }
 
-
     @Override
     public Iterator<Individual> iterator() {
         return solutions.iterator();
     }
-
 }
 
