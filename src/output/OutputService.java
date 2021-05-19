@@ -31,6 +31,13 @@ public class OutputService {
         output.print(text);
     }
 
+    public void printNoFormat(Population p) {
+        String text = getValuesNoFormat(p);
+        output.print(text);
+    }
+
+
+
     /**
      * tag.. you're it
      * @param p
@@ -46,6 +53,36 @@ public class OutputService {
         p.sortByFitness();
 
         output.print(getValues(p));
+    }
+
+    private String getValuesNoFormat(Population p) {
+        String result = null;
+        StringBuilder sb = new StringBuilder();
+        String line = "";
+
+        for(Individual ind : p.getGenom()) {
+            for(double v : ind.getObjectiveValues()) {
+                line += v + " ";
+            }
+            line += "\r\n";
+            sb.append(line);
+        }
+//        List<String> lines = new LinkedList<>();
+//        lines.add("");
+//        lines.add("");
+//        for(Individual ind : p.getGenom())
+//        {
+//            //we want the objective values
+//            for(int i = 0; i < ind.getObjectiveValues().length; i++ ){
+//                lines.set(i, lines.get(i) + ind.getObjectiveValues()[i] + " ");
+//            }
+//        }
+//        for(String l : lines) {
+//            sb.append("[" + l + " ] \r\n");
+//        }
+        result = sb.toString();
+
+        return result;
     }
 
     private String getValues(Population p) {
@@ -81,6 +118,10 @@ public class OutputService {
     public void setOutputToFile(String folderPath) {
         output = new OutputFile(folderPath);
     }
+    public void setOutputToFile() {
+        output = new OutputFile();
+    }
+
 
     /**
      * print data do the app

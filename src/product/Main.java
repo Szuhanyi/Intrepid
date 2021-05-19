@@ -6,7 +6,6 @@ import model.Population;
 import output.OutputService;
 import services.Attributes;
 import testFunctions.Function;
-import view.Plotter;
 
 public class Main {
 
@@ -21,11 +20,12 @@ public class Main {
 
 		OutputService output = OutputService.getInstance();
 		output.setOutputToConsole();
-		output.printById(optimal);
+		output.setOutputToFile();
+		output.printNoFormat(optimal);
 
-		Plotter plotter = new Plotter();
-		plotter.showMeTheGraph(optimal);
-		System.out.println(optimal.size());
+//		Plotter plotter = new Plotter();
+//		plotter.showMeTheGraph(optimal);
+//		System.out.println(optimal.size());
 
 
     }
